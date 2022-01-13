@@ -10,13 +10,7 @@ function show_id(id) {
 	}
 }
 
-function price(sum, fixed_price)
-{
-	document.getElementById('merket_price').innerHTML = Math.ceil(sum * fixed_price);
-}
-
-function isNumber(sum)
-{
+function isNumber(sum) {
 	var numb = isFinite(sum.value);
 	if(numb == false)
 	{
