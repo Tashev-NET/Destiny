@@ -57,3 +57,4 @@
 	{
 		echo '<p class="error">Page not found or you don&#39;t have the permission to access this page.</p>';
 	}
+    
