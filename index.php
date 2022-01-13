@@ -25,7 +25,7 @@
 session_start();
 ob_start();
 require 'conf/config.php';
-require 'inc/sqlcfg.php';
+require 'inc/secure.php';
 require 'inc/modules_funcs.php';
 require 'inc/main_funcs.php';
 

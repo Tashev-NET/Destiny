@@ -1,6 +1,6 @@
 <?php
 /*
- * side_menu.php
+ * secure.php
  * 
  * Copyright 2022 Metodi Tashev <admin@tashev-net.com>
  * 
@@ -22,25 +22,38 @@
  * 
  */
 
-?>
+function secure($string)
+{
+	if (preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $string) && !empty($string))
+	{
+		die('Invalid symbols!');
+	}
+	$string = trim($string);
+	$string = addslashes($string);
+	$string = htmlspecialchars($string, ENT_NOQUOTES);
+	return $string;
+}
 
-<ul>
-	<li class="nav_text">MU ONLINE</li>
-	<li><a href="?p=files">Download Client</a></li>
-	<li><a href="?p=halloffame">Hall Of Fame</a></li>
-	<li><a href="?p=information">Information</a></li>
-	<li><a href="?p=statistics">Statistics</a></li>
+if(@isset($_POST))
+{
+	foreach($_POST as $pkay => $pval)
+	{
+		$_POST[$pkay]= secure($pval);
+	}
+}
 
-	<li class="nav_text">Account</li>
-	<li><a href="<?php echo (isset($_SESSION['dt_username'])) ? '?p=characters' : '?p=login' ; ?>">My Account</a></li>
-	<li><a href="?p=register">Register</a></li>
-	
-	<li class="nav_text">News</li>
-	<li><a href="?p=home">Game Notices</a></li>
-	
-	<li class="nav_text">Rankings</li>
-	<li><a href="?p=topchars">Top Characters</a></li>
-	<li><a href="?p=topguilds">Top Guilds</a></li>
-	<li><a href="?p=topkillers">Top Killers</a></li>
-	<li><a href="?p=gamemasters">Game Masters</a></li>
-</ul>
+if(@isset($_GET))
+{
+	foreach($_GET as $gkay => $gval)
+	{
+		$_GET[$gkay]= secure($gval);
+	}
+}
+
+if(@isset($_REQUEST))
+{
+	foreach($_REQUEST as $rkay => $rval)
+	{
+		$_REQUEST[$rkay]= secure($rval);
+	}
+}

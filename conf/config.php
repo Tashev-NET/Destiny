@@ -1,6 +1,6 @@
 <?php
 /*
- * side_menu.php
+ * config.php
  * 
  * Copyright 2022 Metodi Tashev <admin@tashev-net.com>
  * 
@@ -22,25 +22,25 @@
  * 
  */
 
-?>
+$dbDriver = 'DB_DRIVER';
+$dbServer = 'DB_HOST';
+$dbUser = 'DB_USER';
+$dbPass = 'DB_PASS';
+$dbName = 'DB_NAME';
 
-<ul>
-	<li class="nav_text">MU ONLINE</li>
-	<li><a href="?p=files">Download Client</a></li>
-	<li><a href="?p=halloffame">Hall Of Fame</a></li>
-	<li><a href="?p=information">Information</a></li>
-	<li><a href="?p=statistics">Statistics</a></li>
+try {
+    $conn = new PDO("odbc:Driver={$dbDriver};Server={$dbServer};Database={$dbName};Uid={$dbUser};Pwd={$dbPass};");
+	if (!$conn) { echo 'ERROR'; } else { echo 'SUCCESS!'; } # ONLY FOR TEST CONNECTION!!!
+} catch (Exception $ex) {
+	print $ex->getMessage();
+}
 
-	<li class="nav_text">Account</li>
-	<li><a href="<?php echo (isset($_SESSION['dt_username'])) ? '?p=characters' : '?p=login' ; ?>">My Account</a></li>
-	<li><a href="?p=register">Register</a></li>
-	
-	<li class="nav_text">News</li>
-	<li><a href="?p=home">Game Notices</a></li>
-	
-	<li class="nav_text">Rankings</li>
-	<li><a href="?p=topchars">Top Characters</a></li>
-	<li><a href="?p=topguilds">Top Guilds</a></li>
-	<li><a href="?p=topkillers">Top Killers</a></li>
-	<li><a href="?p=gamemasters">Game Masters</a></li>
-</ul>
+$option['title'] = 'Title Name';
+$option['theme'] = 'default';
+$option['server_name'] = 'Server Name';
+$option['server_ip'] = '127.0.0.1';
+$option['server_port'] = 55901;
+$option['server_version'] = '0.1';
+$option['server_hosted'] = 'Bulgaria / Sofia';
+$option['server_exp'] = '50x';
+$option['server_drop'] = '30%';

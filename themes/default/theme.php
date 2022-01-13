@@ -83,9 +83,9 @@
 					<a href="?p=home">Home</a> | 
 					<a href="?p=gamemasters">Support</a>
 					<br /> 
-					Copyrights &copy; MeMoS, All Rights Reserved.
+					Copyrights &copy; Tashev-NET, All Rights Reserved.
 					<br />
-					Original Design by RisingKing
+					Original Design by Ghoster
 				</p>
 			</div>
 		</div>
