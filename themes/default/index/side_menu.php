@@ -1,6 +1,6 @@
 <?php
 /*
- * index.php
+ * side_menu.php
  * 
  * Copyright 2022 Metodi Tashev <admin@tashev-net.com>
  * 
@@ -22,11 +22,4 @@
  * 
  */
 
-session_start();
-ob_start();
-require 'conf/config.php';
-require 'inc/sqlcfg.php';
-require 'inc/modules_funcs.php';
-require 'inc/main_funcs.php';
-
-require 'themes/' . $option['theme'] . '/theme.php';
+?>
