@@ -1,6 +1,6 @@
 <?php
 /*
- * index.php
+ * information.php
  * 
  * Copyright 2022 Metodi Tashev <admin@tashev-net.com>
  * 
