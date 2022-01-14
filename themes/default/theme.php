@@ -28,8 +28,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <meta name="generator" content="Geany 1.38" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';">
+    <meta name="generator" content="Geany 1.38">
 	<title><?php echo $option['title']; ?></title>
     <link rel="stylesheet" href="themes/default/css/style.css" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
