@@ -51,8 +51,8 @@ function do_login()
         }
         else
         {
-            $_SESSION['dt_username'] = $acc;
-            $_SESSION['dt_password'] = $pass;
+            $_SESSION['username'] = $acc;
+            $_SESSION['password'] = $pass;
             header('Location: ?p=home');
         }
     }

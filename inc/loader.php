@@ -35,10 +35,9 @@
 	$active_pages['logout'] = 'user_panel.php';
 	$active_pages['files'] = 'downloads.php';
 	$active_pages['information'] = 'information.php';
-	$active_pages['halloffame'] = 'hall_of_fame.php';
 	$active_pages['statistics'] = 'statistics.php';
 	
-	if(isset($_SESSION['dt_username']) && isset($_SESSION['dt_password']))
+	if(isset($_SESSION['username']) && isset($_SESSION['password']))
 	{
 		$active_pages['characters'] = 'user/characters.php';
 		$active_pages['resetcharacter'] = 'user/reset_character.php';
@@ -57,4 +56,3 @@
 	{
 		echo '<p class="error">Page not found or you don&#39;t have the permission to access this page.</p>';
 	}
-    
