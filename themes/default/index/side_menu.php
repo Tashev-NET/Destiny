@@ -32,7 +32,7 @@
 	<li><a href="?p=statistics">Statistics</a></li>
 
 	<li class="nav_text">Account</li>
-	<li><a href="<?php echo (isset($_SESSION['dt_username'])) ? '?p=characters' : '?p=login' ; ?>">My Account</a></li>
+	<li><a href="<?php echo (isset($_SESSION['username'])) ? '?p=characters' : '?p=login' ; ?>">My Account</a></li>
 	<li><a href="?p=register">Register</a></li>
 	
 	<li class="nav_text">News</li>

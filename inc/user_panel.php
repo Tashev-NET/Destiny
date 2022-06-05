@@ -22,11 +22,11 @@
  * 
  */
 
-	if(isset($_SESSION['dt_username']) && isset($_SESSION['dt_password'])):
+	if(isset($_SESSION['username']) && isset($_SESSION['password'])):
 ?>
 
 <ul class="side_menu">
-	<li>Welcome <span style="color:#890000;font-weight:bold;"><?php echo $_SESSION['dt_username']; ?></span></li>
+	<li>Welcome <span style="color:#890000;font-weight:bold;"><?php echo $_SESSION['username']; ?></span></li>
 	<li><br /></li>
 	<li><a href="?p=characters">Characters</a></li>
 	<li><a href="?p=resetcharacter">Reset Character</a></li>
