@@ -22,8 +22,8 @@
  * 
  */
 
-$dbDriver = 'DB_DRIVER';
-$dbServer = 'DB_HOST';
+$dbDriver = 'DB_DRIVER';	// Example: 'ODBC Driver 17 for SQL Server'
+$dbServer = 'DB_HOST';		// Example: 'PC-NAME\SQLEXPRESS'
 $dbUser = 'DB_USER';
 $dbPass = 'DB_PASS';
 $dbName = 'DB_NAME';
