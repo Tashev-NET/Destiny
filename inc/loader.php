@@ -38,7 +38,7 @@
 	$active_pages['halloffame'] = 'hall_of_fame.php';
 	$active_pages['statistics'] = 'statistics.php';
 	
-	if(isset($_SESSION['dt_username']) && isset($_SESSION['dt_password']))
+	if(isset($_SESSION['username']) && isset($_SESSION['password']))
 	{
 		$active_pages['characters'] = 'user/characters.php';
 		$active_pages['resetcharacter'] = 'user/reset_character.php';
