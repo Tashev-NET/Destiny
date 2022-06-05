@@ -41,9 +41,9 @@ function do_login()
     }
     else
     {
-        $is_acc_pass = mssql_num_rows(
-            mssql_query("SELECT memb___id FROM MEMB_INFO WHERE memb___id='". $acc ."' AND memb__pwd='". $pass ."'")
-        );
+        $sql = $conn->prepare("SELECT memb___id FROM MEMB_INFO WHERE memb___id='". $acc ."' AND memb__pwd='". $pass ."'");
+        $sql->execute();
+        $is_acc_pass = $sql->fetch(PDO::FETCH_ASSOC);
         
         if($is_acc_pass == 0)
         {
@@ -123,9 +123,9 @@ function do_registration()
         }
         if($error===0)
         {
-            $is_acc_mail = mssql_num_rows(
-                mssql_query("SELECT memb___id FROM MEMB_INFO WHERE memb___id='". $acc ."' OR mail_addr='". $mail ."'")
-            );
+            $sql = $conn->prepare("SELECT memb___id FROM MEMB_INFO WHERE memb___id='". $acc ."' OR mail_addr='". $mail ."'");
+            $sql->execute();
+            $is_acc_mail = $sql->fetch(PDO::FETCH_ASSOC);
             
             if($is_acc_mail!=0)
             {
@@ -133,8 +133,7 @@ function do_registration()
             }
             else
             {
-                mssql_query("INSERT INTO MEMB_INFO (memb___id,memb__pwd,memb_name,sno__numb,post_code,addr_info,addr_deta,tel__numb,mail_addr,phon_numb,fpas_ques,fpas_answ,job__code,appl_days,modi_days,out__days,true_days,mail_chek,bloc_code,ctl1_code) VALUES ('". $acc ."','". $pass ."','Server','1111111111111','1234', '11111', '111111111','12343','". $mail ."', '0','". $sq ."','". $sa ."','1','2003-11-23', '2003-11-23', '2003-11-23', '2003-11-23', '1', '0', '1')");
-                mssql_query("INSERT INTO VI_CURR_INFO (memb_guid,ends_days,chek_code,used_time,memb___id,memb_name,sno__numb,Bill_Section,Bill_value,Bill_Hour,Surplus_Point,Surplus_Minute,Increase_Days )  VALUES ('1','2005','1',1234,'". $acc ."','Server','7','6','3','6','6','2003-11-23 10:36:00','0' )");
+                $conn->query("INSERT INTO MEMB_INFO (memb___id,memb__pwd,memb_name,sno__numb,post_code,addr_info,addr_deta,tel__numb,mail_addr,phon_numb,fpas_ques,fpas_answ,job__code,appl_days,modi_days,out__days,true_days,mail_chek,bloc_code,ctl1_code) VALUES ('". $acc ."','". $pass ."','Server','1111111111111','1234', '11111', '111111111','12343','". $mail ."', '0','". $sq ."','". $sa ."','1','2003-11-23', '2003-11-23', '2003-11-23', '2003-11-23', '1', '0', '1')");
                 $show_msg['success'][0] = 'Thank you "'.$acc.'", your registration is complete.';
             }
         }
