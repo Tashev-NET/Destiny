@@ -1,5 +1,6 @@
-<?php
-if(isset($_SESSION['username']))
+<?php 
+
+ if(isset($_SESSION['username']))
 {
 	echo '<p class="error">Already login!</p>';
 	return false;
