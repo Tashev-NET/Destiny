@@ -34,8 +34,7 @@ function show_messages($store)
 {
 	$msgs = (@$store['error']) ? $store['error'] : $store['success'];
 	$msg_type = (@$store['error']) ? 'error' : 'success';
-	foreach($msgs as $msg)
-	{
+	foreach ($msgs as $msg) {
 		echo '<p class="'.$msg_type.'"> '.$msg.'</p>';
 	}
 }
