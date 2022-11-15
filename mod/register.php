@@ -1,7 +1,6 @@
 <?php
 
- if (isset($_SESSION['username']))
-{
+ if (isset($_SESSION['username'])) {
 	echo '<p class="error">Already login!</p>';
 	return false;
 }
@@ -11,8 +10,7 @@
 	<div class="boxTitle">REGISTRATION FORM</div>
 	<div class="boxBody">
 		<?php
-			if(isset($_POST['reg']))
-			{
+			if (isset($_POST['reg'])) {
 				$store = do_registration();
 				show_messages($store);
 			}
