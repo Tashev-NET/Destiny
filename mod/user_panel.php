@@ -1,6 +1,6 @@
 <?php
-if(isset($_SESSION['username']) && isset($_SESSION['password']))
-{
+
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
 	unset($_SESSION['username']);
 	unset($_SESSION['password']);
 	session_destroy();
@@ -11,8 +11,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['password']))
 	<div class="boxTitle">USER FORM</div>
 	<div class="boxBody">
 		<?php
-			if(isset($_POST['login']))
-			{
+			if (isset($_POST['login'])) {
 				$store = do_login();
 				show_messages($store);
 			}
