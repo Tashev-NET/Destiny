@@ -24,7 +24,7 @@
 
 include 'conf/news.php';
 $id = 0;
-foreach($option['news'] as $news) {
+foreach ($option['news'] as $news) {
 $id++;
 ?>
 <div class="box">
