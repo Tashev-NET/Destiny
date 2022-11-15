@@ -31,26 +31,18 @@ function do_login()
         'error'=>array()
     );
     
-    if(empty($acc) || empty($pass))
-    {
+    if (empty($acc) || empty($pass)) {
         $show_msg['error'][] = 'Some fields are empty!';
-    }
-    elseif(preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $acc) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $pass))
-    {
+    } elseif (preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $acc) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $pass)) {
         $show_msg['error'][] = 'Invalid symbols!';
-    }
-    else
-    {
+    } else {
         $sql = $conn->prepare("SELECT memb___id FROM MEMB_INFO WHERE memb___id='". $acc ."' AND memb__pwd='". $pass ."'");
         $sql->execute();
         $is_acc_pass = $sql->fetch(PDO::FETCH_ASSOC);
         
-        if($is_acc_pass == 0)
-        {
+        if ($is_acc_pass == 0) {
             $show_msg['error'][] = 'Wrong Account or Password!';
-        }
-        else
-        {
+        } else {
             $_SESSION['username'] = $acc;
             $_SESSION['password'] = $pass;
             header('Location: ?p=home');
@@ -72,67 +64,49 @@ function do_registration()
     );
     $error=0;
     
-    if(empty($acc) || empty($pass) || empty($repass) || empty($mail) || empty($sq) || empty($sa))
-    {
+    if (empty($acc) || empty($pass) || empty($repass) || empty($mail) || empty($sq) || empty($sa)) {
         $show_msg['error'][] = 'Some fields are empty!';
-    }
-    elseif(preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $acc) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $pass) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $repass) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $sq) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $sa))
-    {
+    } elseif (preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $acc) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $pass) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $repass) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $sq) || preg_match('/[^a-zA-Z0-9\\-_\.@\s]/', $sa)) {
         $show_msg['error'][] = 'Invalid symbols!';
-    }
-    elseif(!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$/D', $mail))
-    {
+    } elseif (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$/D', $mail)) {
         $show_msg['error'][] = 'Invalid Email address! Example: email@mail.com';
-    }
-    else
-    {
-        if(strlen($acc) < 4 || strlen($acc) > 10)
-        {
+    } else {
+        if (strlen($acc) < 4 || strlen($acc) > 10) {
             $show_msg['error'][] = 'Account need to be between 4-10 symbols!';
             $error=1;
         }
-        if(strlen($pass) < 4 || strlen($pass) > 10)
-        {
+        if (strlen($pass) < 4 || strlen($pass) > 10) {
             $show_msg['error'][] = 'Password need to be between 4-10 symbols!';
             $error=1;
         }
-        if($pass!=$repass)
-        {
+        if ($pass!=$repass) {
             $show_msg['error'][] = 'The Passwords don&#39;t match!';
             $error=1;
         }
-        if(strlen($mail) > 60)
-        {
+        if (strlen($mail) > 60) {
             $show_msg['error'][] = 'The Email Address can&#39;t be more than 60 symbols!';
             $error=1;
         }
-        if($sq==$sa)
-        {
+        if ($sq==$sa) {
             $show_msg['error'][] = 'Secret Question and Answer must be different!';
             $error=1;
         }
-        if(strlen($sq) < 6 || strlen($sq) > 10)
-        {
+        if (strlen($sq) < 6 || strlen($sq) > 10) {
             $show_msg['error'][] = 'Secret Question need to be between 6-10 symbols!';
             $error=1;
         }
-        if(strlen($sa) < 6 || strlen($sa) > 10)
-        {
+        if (strlen($sa) < 6 || strlen($sa) > 10) {
             $show_msg['error'][] = 'Secret Answer need to be between 6-10 symbols!';
             $error=1;
         }
-        if($error===0)
-        {
+        if ($error===0) {
             $sql = $conn->prepare("SELECT memb___id FROM MEMB_INFO WHERE memb___id='". $acc ."' OR mail_addr='". $mail ."'");
             $sql->execute();
             $is_acc_mail = $sql->fetch(PDO::FETCH_ASSOC);
             
-            if($is_acc_mail!=0)
-            {
+            if ($is_acc_mail!=0) {
                 $show_msg['error'][] = 'This Account OR Email Address is already used!';
-            }
-            else
-            {
+            } else {
                 $conn->query("INSERT INTO MEMB_INFO (memb___id,memb__pwd,memb_name,sno__numb,post_code,addr_info,addr_deta,tel__numb,mail_addr,phon_numb,fpas_ques,fpas_answ,job__code,appl_days,modi_days,out__days,true_days,mail_chek,bloc_code,ctl1_code) VALUES ('". $acc ."','". $pass ."','Server','1111111111111','1234', '11111', '111111111','12343','". $mail ."', '0','". $sq ."','". $sa ."','1','2003-11-23', '2003-11-23', '2003-11-23', '2003-11-23', '1', '0', '1')");
                 $show_msg['success'][0] = 'Thank you "'.$acc.'", your registration is complete.';
             }
