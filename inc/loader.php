@@ -43,7 +43,7 @@
 	}
 
 	if (@$active_pages[$current_page] && file_exists('mod/' . $active_pages[$current_page])) {
-		include ('mod/' . $active_pages[$current_page]);
+		include_once ('mod/' . $active_pages[$current_page]);
 	} else {
 		echo '<p class="error">Page not found or you don&#39;t have the permission to access this page.</p>';
 	}
