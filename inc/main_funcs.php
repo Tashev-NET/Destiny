@@ -47,13 +47,13 @@ function show_msg($msg, $num = 0)
 	show_messages($message);
 }
 
-function pagination($offset = 0, $limit = 0, $select = NULL, $table = NULL, $order = NULL, $id_field = NULL, $where = NULL)
+function pagination($offset = 0, $limit = 0, $select = null, $table = null, $order = null, $id_field = null, $where = null)
 {
-	$sql_query = 'SELECT TOP ' . (intval($limit)).' ' . $select . '
-		FROM ' . $table . ' WHERE '.(!empty($where) ? $where . ' AND ': '').' ' . $id_field . '
-		NOT IN (SELECT TOP ' . (intval($offset)).' ' . $id_field . '
-		FROM ' . $table . (!empty($where) ? ' WHERE ' . $where : '').'
-		ORDER BY ' . $order . ') ORDER BY ' . $order;
+$sqlQuery = 'SELECT TOP ' . (intval($limit)).' ' . $select . '
+FROM ' . $table . ' WHERE '.(!empty($where) ? $where . ' AND ': '').' ' . $id_field . '
+NOT IN (SELECT TOP ' . (intval($offset)).' ' . $id_field . '
+FROM ' . $table . (!empty($where) ? ' WHERE ' . $where : '').'
+ORDER BY ' . $order . ') ORDER BY ' . $order;
 
-    return $sql_query;
+ return $sqlQuery;
 }
